@@ -7,7 +7,8 @@ public class FirstPage {
     public static void main(String[] args) {
         String str = "Java Kotlin Java python go Kotlin";
         returnFirstStr(str + '\n');
-        returnFirstStr1(str);
+        returnFirstStr1(str + '\n');
+        returnFirstUniqueWord(str);
     }
 
 
@@ -115,5 +116,21 @@ public class FirstPage {
         System.out.println("first word -> " + firstWord);
     }
 
+    private static void returnFirstUniqueWord(String str) {
+        String[] words = str.split(" ");
+        Map<String, Integer> wordCount = new HashMap<>();
 
+        for (String word : words) {
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+        List<String> uniqueWords = new ArrayList<>();
+
+        for (String word : words) {
+            if (wordCount.get(word) == 1) {
+                uniqueWords.add(word);
+            }
+        }
+        String firstUniqueWord = uniqueWords.isEmpty() ? "" : uniqueWords.get(0);
+        System.out.println("Первое уникальное слово: " + firstUniqueWord);
+    }
 }
