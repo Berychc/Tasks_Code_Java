@@ -5,7 +5,9 @@ import java.util.*;
 public class FirstPage {
 
     public static void main(String[] args) {
-
+        String str = "Java Kotlin Java python go Kotlin";
+        returnFirstStr(str + '\n');
+        returnFirstStr1(str);
     }
 
 
@@ -87,4 +89,31 @@ public class FirstPage {
         }
         return goal == 0;
     }
+
+    private static void returnFirstStr(String str) {
+        String[] array = str.split(" ");
+        Map<String, Integer> map = new HashMap<>();
+        for (String word : array) {
+            if (map.containsKey(word)) {
+                map.put(word, map.get(word) + 1);
+            } else {
+                map.put(word, 1);
+            }
+        }
+
+        String firstWorld = Collections.min(map.keySet());
+        System.out.println("First word -> " + firstWorld);
+    }
+
+    private static void returnFirstStr1(String str) {
+        String[] words = str.split(" ");
+        Map<String, Integer> wordCount = new HashMap<>();
+        for (String word : words) {
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+        String firstWord = Collections.min(wordCount.keySet());
+        System.out.println("first word -> " + firstWord);
+    }
+
+
 }
