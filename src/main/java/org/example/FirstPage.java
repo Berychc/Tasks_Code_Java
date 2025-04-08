@@ -5,10 +5,7 @@ import java.util.*;
 public class FirstPage {
 
     public static void main(String[] args) {
-        String str = "Java Kotlin Java python go Kotlin";
-        returnFirstStr(str + '\n');
-        returnFirstStr1(str + '\n');
-        returnFirstUniqueWord(str);
+        cashMachine();
     }
 
 
@@ -132,5 +129,32 @@ public class FirstPage {
         }
         String firstUniqueWord = uniqueWords.isEmpty() ? "" : uniqueWords.get(0);
         System.out.println("Первое уникальное слово: " + firstUniqueWord);
+    }
+
+    private static boolean middleSearchMethod(String str) {
+        for (int i = 0; i < str.length() - 5; i++) {
+            if (str.startsWith("pizda", i)) {
+                int low = i, high = str.length() - (i + 5);
+                if (Math.abs(low - high) <= 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static void cashMachine() {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] banknotes = {5000, 2000, 1000, 500, 100, 10};
+        int cash = scanner.nextInt();
+        int count;
+
+        for (int i = 0; i < banknotes.length; i++) {
+            count = cash / banknotes[i];
+            if (count != 0) System.out.println("Купюра -> " + banknotes[i]+ "\nштук -> " + cash);
+
+            cash = cash % banknotes[i];
+        }
     }
 }
